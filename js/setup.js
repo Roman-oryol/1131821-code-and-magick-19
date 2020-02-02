@@ -8,85 +8,85 @@ var WIZARD_FIREBALL_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e8
 var ESC_KEY = 'Escape';
 var ENTER_KEY = 'Enter';
 
-var userDialog = document.querySelector('.setup');
-var userDialogOpen = document.querySelector('.setup-open');
-var userDialogClose = userDialog.querySelector('.setup-close');
-var userName = userDialog.querySelector('.setup-user-name');
-var wizardCoat = userDialog.querySelector('.wizard-coat');
-var wizardEyes = userDialog.querySelector('.wizard-eyes');
-var wizardCoatColor = userDialog.querySelector('input[name="coat-color"]');
-var wizardEyesColor = userDialog.querySelector('input[name="eyes-color"]');
-var wizardFireball = userDialog.querySelector('.setup-fireball-wrap');
-var setupFireballColor = wizardFireball.querySelector('input[name="fireball-color"]');
+var userDialogElement = document.querySelector('.setup');
+var userDialogOpenElement = document.querySelector('.setup-open');
+var userDialogCloseElement = userDialogElement.querySelector('.setup-close');
+var userNameElement = userDialogElement.querySelector('.setup-user-name');
+var wizardCoatElement = userDialogElement.querySelector('.wizard-coat');
+var wizardEyesElement = userDialogElement.querySelector('.wizard-eyes');
+var wizardCoatColorElement = userDialogElement.querySelector('input[name="coat-color"]');
+var wizardEyesColorElement = userDialogElement.querySelector('input[name="eyes-color"]');
+var wizardFireballElement = userDialogElement.querySelector('.setup-fireball-wrap');
+var setupFireballColorElement = wizardFireballElement.querySelector('input[name="fireball-color"]');
 
 var onUserDialogEscPress = function (evt) {
-  if (evt.key === ESC_KEY && evt.target !== userName) {
+  if (evt.key === ESC_KEY && evt.target !== userNameElement) {
     closeUserDialog();
   }
 };
 
 var openUserDialog = function () {
-  userDialog.classList.remove('hidden');
+  userDialogElement.classList.remove('hidden');
 
   document.addEventListener('keydown', onUserDialogEscPress);
 };
 
 var closeUserDialog = function () {
-  userDialog.classList.add('hidden');
+  userDialogElement.classList.add('hidden');
   document.removeEventListener('keydown', onUserDialogEscPress);
 };
 
 var changeCoatColor = function () {
   var coatColor = getRandomElementFromArray(WIZARD_COAT_COLORS);
-  wizardCoat.style.fill = coatColor;
-  wizardCoatColor.value = coatColor;
+  wizardCoatElement.style.fill = coatColor;
+  wizardCoatColorElement.value = coatColor;
 };
 
 var changeEyesColor = function () {
   var eyesColor = getRandomElementFromArray(WIZARD_EYES_COLORS);
-  wizardEyes.style.fill = eyesColor;
-  wizardEyesColor.value = eyesColor;
+  wizardEyesElement.style.fill = eyesColor;
+  wizardEyesColorElement.value = eyesColor;
 };
 
 var changeFireballColor = function () {
   var fireballColor = getRandomElementFromArray(WIZARD_FIREBALL_COLORS);
-  wizardFireball.style.backgroundColor = fireballColor;
-  setupFireballColor.value = fireballColor;
+  wizardFireballElement.style.backgroundColor = fireballColor;
+  setupFireballColorElement.value = fireballColor;
 };
 
-userDialogOpen.addEventListener('click', function () {
+userDialogOpenElement.addEventListener('click', function () {
   openUserDialog();
 });
 
-userDialogOpen.addEventListener('keydown', function (evt) {
+userDialogOpenElement.addEventListener('keydown', function (evt) {
   if (evt.key === ENTER_KEY) {
     openUserDialog();
   }
 });
 
-userDialogClose.addEventListener('click', function () {
+userDialogCloseElement.addEventListener('click', function () {
   closeUserDialog();
 });
 
-userDialogClose.addEventListener('keydown', function (evt) {
+userDialogCloseElement.addEventListener('keydown', function (evt) {
   if (evt.key === 'Enter') {
     closeUserDialog();
   }
 });
 
-wizardCoat.addEventListener('click', function () {
+wizardCoatElement.addEventListener('click', function () {
   changeCoatColor();
 });
 
-wizardEyes.addEventListener('click', function () {
+wizardEyesElement.addEventListener('click', function () {
   changeEyesColor();
 });
 
-wizardFireball.addEventListener('click', function () {
+wizardFireballElement.addEventListener('click', function () {
   changeFireballColor();
 });
 
-var similarListElement = userDialog.querySelector('.setup-similar-list');
+var similarListElement = userDialogElement.querySelector('.setup-similar-list');
 
 var similarWizardTemplate = document.querySelector('#similar-wizard-template')
   .content
