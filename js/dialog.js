@@ -6,26 +6,6 @@
   var userDialogCloseElement = userDialogElement.querySelector('.setup-close');
   var userNameElement = userDialogElement.querySelector('.setup-user-name');
 
-  userDialogOpenElement.addEventListener('click', function () {
-    openUserDialog();
-  });
-
-  userDialogOpenElement.addEventListener('keydown', function (evt) {
-    if (evt.key === window.util.ENTER_KEY) {
-      openUserDialog();
-    }
-  });
-
-  userDialogCloseElement.addEventListener('click', function () {
-    closeUserDialog();
-  });
-
-  userDialogCloseElement.addEventListener('keydown', function (evt) {
-    if (evt.key === window.util.ENTER_KEY) {
-      closeUserDialog();
-    }
-  });
-
   var onUserDialogEscPress = function (evt) {
     if (evt.key === window.util.ESC_KEY && evt.target !== userNameElement) {
       closeUserDialog();
@@ -40,6 +20,23 @@
 
   var closeUserDialog = function () {
     userDialogElement.classList.add('hidden');
+    userDialogElement.style = '';
     document.removeEventListener('keydown', onUserDialogEscPress);
   };
+
+  userDialogOpenElement.addEventListener('click', function () {
+    openUserDialog();
+  });
+
+  userDialogOpenElement.addEventListener('keydown', function (evt) {
+    window.util.isEnterEvent(evt, openUserDialog);
+  });
+
+  userDialogCloseElement.addEventListener('click', function () {
+    closeUserDialog();
+  });
+
+  userDialogCloseElement.addEventListener('keydown', function (evt) {
+    window.util.isEnterEvent(evt, closeUserDialog);
+  });
 })();
